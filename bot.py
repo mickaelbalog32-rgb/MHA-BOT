@@ -4,6 +4,7 @@ from discord.ext import commands
 from discord import app_commands
 import aiosqlite
 import json
+import os
 import asyncio
 
 # -------------------------------
@@ -12,7 +13,7 @@ import asyncio
 with open("config.json") as f:
     config = json.load(f)
 
-TOKEN = config["token"]
+TOKEN = os.getenv("TOKEN")
 GUILD_ID = config["guild_id"]
 STAFF_ROLE = config.get("staff_role", "Staff")
 DATABASE = config.get("database", "profiles.db")
@@ -350,6 +351,7 @@ async def reset_profil(interaction: discord.Interaction, member: discord.Member)
 # Lancer le bot
 # -------------------------------
 bot.run(TOKEN)
+
 
 
 
